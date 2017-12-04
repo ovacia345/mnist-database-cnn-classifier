@@ -39,11 +39,11 @@ def get_images(labelfile, imagefile):
 def main():
     print('Generating training set')
     labels, images = get_images('train-labels.idx1-ubyte', 'train-images.idx3-ubyte')
-    np.savez('training_set.npz', labels=labels, images=images)
+    np.savez_compressed('training_set.npz', labels=labels, images=images)
 
     print('Generating test set')
     labels, images = get_images('t10k-labels.idx1-ubyte', 't10k-images.idx3-ubyte')
-    np.savez('test_set.npz', labels=labels, images=images)
+    np.savez_compressed('test_set.npz', labels=labels, images=images)
 
 
 if __name__ == "__main__":
