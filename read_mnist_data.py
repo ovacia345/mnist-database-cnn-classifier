@@ -37,9 +37,11 @@ def get_images(labelfile, imagefile):
 
 
 def main():
+    print('Generating training set')
     labels, images = get_images('train-images.idx3-ubyte', 'train-labels.idx1-ubyte')
-    np.savez('test_set.npz', labels=labels, images=images)
+    np.savez('training_set.npz', labels=labels, images=images)
 
+    print('Generating test set')
     labels, images = get_images('t10k-images.idx3-ubyte', 't10k-labels.idx1-ubyte')
     np.savez('test_set.npz', labels=labels, images=images)
 
