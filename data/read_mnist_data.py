@@ -39,10 +39,14 @@ def get_images(labelfile, imagefile):
 def main():
     print('Generating training set')
     labels, images = get_images('train-labels.idx1-ubyte', 'train-images.idx3-ubyte')
+    labels = labels.astype(np.int32)
+    images = images.astype(np.float32)
     np.savez_compressed('training_set.npz', labels=labels, images=images)
 
     print('Generating test set')
     labels, images = get_images('t10k-labels.idx1-ubyte', 't10k-images.idx3-ubyte')
+    labels = labels.astype(np.int32)
+    images = images.astype(np.float32)
     np.savez_compressed('test_set.npz', labels=labels, images=images)
 
 
