@@ -83,6 +83,7 @@ def cnn_fn(features, labels, mode):
 
 
 NUM_TRAINING_STEPS = 20000
+N_ITER = 10
 
 
 def main(args):
@@ -99,9 +100,9 @@ def main(args):
     eval_data = mnist_test['images'].astype(np.float32)
     eval_labels = mnist_test['labels'].astype(np.int32)
 
-    accuracy_list = np.zeros([NUM_TRAINING_STEPS // 50], np.float32)
-    loss_list = np.zeros([NUM_TRAINING_STEPS // 50], np.float32)
-    for i in range(NUM_TRAINING_STEPS // 50):
+    accuracy_list = np.zeros([NUM_TRAINING_STEPS // N_ITER], np.float32)
+    loss_list = np.zeros([NUM_TRAINING_STEPS // N_ITER], np.float32)
+    for i in range(NUM_TRAINING_STEPS // N_ITER):
         train_input_fn = tf.estimator.inputs.numpy_input_fn(
             x={'x': train_data},
             y=train_labels,
@@ -111,7 +112,7 @@ def main(args):
         )
         mnist_classifier.train(
             input_fn=train_input_fn,
-            steps=50
+            steps=N_ITER
         )
 
         eval_input_fn = tf.estimator.inputs.numpy_input_fn(
